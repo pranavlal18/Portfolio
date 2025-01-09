@@ -24,8 +24,8 @@ const Contact = () => {
                         whileInView={{ opacity: 1, y: 0 }}
                         initial={{ opacity: 0, y: 50 }}
                         transition={{ duration: 0.5, delay: 0.2 }}
-                        whileHover={{ scale: 1.1 }} // Zoom effect on hover
-                        transition={{ duration: 0.1 }} // Faster zoom transition
+                        whileHover={{ scale: 1.1 }} 
+                        transition={{ duration: 0.1 }} 
                         viewport={{ once: true }}
                         className="mb-4 text-center cursor-pointer p-4 rounded-lg hover:bg-neutral-800 transition-all"
                     >
@@ -39,8 +39,8 @@ const Contact = () => {
                     whileInView={{ opacity: 1, y: 0 }}
                     initial={{ opacity: 0, y: 50 }}
                     transition={{ duration: 0.5, delay: 0.4 }}
-                    whileHover={{ scale: 1.1 }} // Zoom effect on hover
-                    transitions={{ duration: 0.1 }} // Faster zoom transition
+                    whileHover={{ scale: 1.1 }} 
+                    transitions={{ duration: 0.1 }} 
                     viewport={{ once: true }}
                     className="mt-6"
                 >
