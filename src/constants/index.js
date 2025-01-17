@@ -87,5 +87,8 @@ export const PROJECTS = [
 export const CONTACT = {
 
   email: "pranavlal18@gmail.com",
+<<<<<<< HEAD
   phoneNo:"+91 9188883090",
+=======
+>>>>>>> fdd054d0de63389fb65b75483b146ee9bc51a446
 };
