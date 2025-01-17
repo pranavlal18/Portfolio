@@ -36,7 +36,7 @@ const Navbar = () => {
         animate="visible"
         variants={fadeInVariants}
       >
-        <motion.a
+        {/* <motion.a
           href="https://www.linkedin.com/"
           target="_blank"
           rel="noopener noreferrer"
@@ -45,7 +45,7 @@ const Navbar = () => {
           className="text-blue-600 hover:text-blue-800 transition-transform duration-100 transform hover:scale-125"
         >
           <FaLinkedin />
-        </motion.a>
+        </motion.a> */}
 
         <motion.a
           href="https://github.com/pranavlal18"
