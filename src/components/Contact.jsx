@@ -25,7 +25,7 @@ const Contact = () => {
                         initial={{ opacity: 0, y: 50 }}
                         transition={{ duration: 0.5, delay: 0.2 }}
                         whileHover={{ scale: 1.1 }} 
-                        transition={{ duration: 0.1 }} 
+                        transitions={{ duration: 0.1 }} 
                         viewport={{ once: true }}
                         className="mb-4 text-center cursor-pointer p-4 rounded-lg hover:bg-neutral-800 transition-all"
                     >
