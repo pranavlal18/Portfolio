@@ -1,5 +1,5 @@
 import { HERO_CONTENT } from "../constants";
-import profilePic from '../assets/profilePic.jpeg';
+import profile from '../assets/profile.jpg';
 import { motion } from "framer-motion";
 const Hero = () => {
     const container =(x,delay)=>({
@@ -24,7 +24,7 @@ const Hero = () => {
                         initial="hidden"
                         animate="visible"
                         className="pb-16 text-6xl font-thin tracking-tighter lg:mt-16 lg:text-8xl">
-                            Pranav Lal
+                            Pranav Lal K B
                         </motion.h1>
                         <motion.span
                         variants={container(-100,0.5)}
@@ -48,7 +48,7 @@ const Hero = () => {
                         variants={container(100,1.3)}
                         initial="hidden"
                         animate="visible"
-                            src={profilePic}
+                            src={profile}
                             alt="profile"
                             className="w-[30rem] h-[30rem] lg:w-[25rem] lg:h-[25rem] rounded-lg"
 
