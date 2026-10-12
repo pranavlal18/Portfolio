@@ -3,6 +3,7 @@ import Hero from './components/Hero';
 import About from './components/About';
 import Tech from './components/Technologies'
 import Project from './components/Project';
+import Experience from './components/Experience';
 import Contract from './components/Contact';
 
 function App() {
@@ -13,14 +14,15 @@ function App() {
       {/* Background gradient spanning full page */}
       <div className="fixed inset-0 -z-10 h-screen w-screen [background:radial-gradient(125%_125%_at_50%_10%,#000_40%,#63e_100%)]"></div>
 
-      {/* Anchors (R3): #about → About, #skills → Tech, #projects → Project */}
+      {/* Anchors (R3/R4): #about → About, #skills → Tech, #projects → Project,
+          #experience → Experience, #contact → Contact */}
       <div className="container mx-auto px-8">
         <Navbar />
         <Hero />
         <About />
         <Tech />
         <Project />
-        {/* Task 5: Experience mounts here */}
+        <Experience />
         <Contract />
 
       </div>
