@@ -6,9 +6,17 @@ import { useRef } from 'react';
  * drag/buttons/keyboard script, indexq.html lines 197–226 and 258–269).
  *
  * Drag semantics ported exactly: pointerdown records start + captures the
- * pointer, pointermove scrolls, pointerup/cancel/leave ends the drag. Added
- * per the controller ruling: pointer travel > 6px swallows the trailing click
- * via a capture-phase listener (so a drag never opens a card), reset after.
+ * pointer, pointermove scrolls, pointerup/cancel/leave ends the drag, and
+ * pointer travel > 6px counts as a drag (never opens a card).
+ *
+ * Activation (controller fix round): `setPointerCapture` retargets pointerup
+ * and the trailing click to the rail in Chromium, so per-card onClick handlers
+ * never fire there. Instead pointerdown records the `.wcard[data-slug]` /
+ * `.allcard` under the pointer, and pointerup activates that recorded element
+ * directly when travel ≤ 6px — `onOpen(slug)` / goto scroll. The trailing
+ * pointer click is consumed (never double-activates); keyboard clicks
+ * (Enter/Space, no pointer involved) are delegated at the rail via
+ * `onClick`, so focus + activation on cards keeps working.
  *
  * Cards render `data-slug` and call `onOpen(slug)` (default no-op) — Task 3
  * wires the case dialog through App.jsx state without touching this file.
@@ -28,13 +36,21 @@ export default function WorkRail({
 }) {
   const railRef = useRef(null);
   const drag = useRef({ down: false, sx: 0, sl: 0 });
-  const swallowClick = useRef(false);
+  const dragged = useRef(false); // travel > 6px during this gesture
+  const downCard = useRef(null); // .wcard[data-slug] under pointerdown
+  const downGoto = useRef(null); // .allcard under pointerdown
+  const handledClick = useRef(false); // trailing pointer click already handled
 
   const handlePointerDown = (e) => {
     const rail = railRef.current;
     if (!rail) return;
     drag.current = { down: true, sx: e.clientX, sl: rail.scrollLeft };
-    swallowClick.current = false;
+    dragged.current = false;
+    // Chromium retargets the trailing click to the rail (pointer capture), so
+    // record what was pressed now and activate it on pointerup instead.
+    downCard.current = e.target.closest?.('.wcard[data-slug]') ?? null;
+    downGoto.current = e.target.closest?.('.allcard') ?? null;
+    handledClick.current = false;
     rail.classList.add('dragging');
     rail.setPointerCapture(e.pointerId);
   };
@@ -42,23 +58,54 @@ export default function WorkRail({
   const handlePointerMove = (e) => {
     const rail = railRef.current;
     if (!rail || !drag.current.down) return;
-    if (Math.abs(e.clientX - drag.current.sx) > 6) swallowClick.current = true;
+    if (Math.abs(e.clientX - drag.current.sx) > 6) dragged.current = true;
     rail.scrollLeft = drag.current.sl - (e.clientX - drag.current.sx);
   };
 
+  // Also used by pointercancel/pointerleave: ends the drag and forgets the
+  // recorded press targets without activating (gesture interrupted).
   const endDrag = () => {
     const rail = railRef.current;
     drag.current.down = false;
+    dragged.current = false;
+    downCard.current = null;
+    downGoto.current = null;
     rail?.classList.remove('dragging');
   };
 
-  // Capture phase runs before the card's onClick: a real drag (>6px travel)
-  // swallows its trailing click once, then resets so the next click opens.
-  const handleRailClickCapture = (e) => {
-    if (!swallowClick.current) return;
-    e.preventDefault();
-    e.stopPropagation();
-    swallowClick.current = false;
+  const handlePointerUp = (e) => {
+    const wasDown = drag.current.down;
+    const card = downCard.current;
+    const gotoEl = downGoto.current;
+    const isDrag = dragged.current || Math.abs(e.clientX - drag.current.sx) > 6;
+    endDrag();
+    if (!wasDown) return; // stray pointerup — not our gesture
+    if (isDrag) {
+      handledClick.current = true; // swallow the trailing click of a drag
+      return;
+    }
+    // Travel ≤ 6px: a plain click. pointerup (and the trailing click) land on
+    // the rail under capture, so activate the recorded element directly.
+    handledClick.current = true; // our click — consume the trailing click
+    if (card) onOpen(card.dataset.slug);
+    else if (gotoEl) activateGoto();
+  };
+
+  const handleRailClick = (e) => {
+    // The pointer gesture already resolved on pointerup (opened or swallowed);
+    // ignore its trailing click so nothing fires twice.
+    if (handledClick.current) {
+      handledClick.current = false;
+      return;
+    }
+    // Keyboard activation (Enter/Space fires a click with no pointer events):
+    // delegate from the event target so cards still open when focused.
+    const card = e.target.closest?.('.wcard[data-slug]');
+    if (card) {
+      onOpen(card.dataset.slug);
+      return;
+    }
+    if (e.target.closest?.('.allcard')) activateGoto();
   };
 
   const handleKeyDown = (e) => {
@@ -68,8 +115,7 @@ export default function WorkRail({
     if (e.key === 'ArrowLeft') rail.scrollBy({ left: -320 });
   };
 
-  const handleGoto = (e) => {
-    e.stopPropagation();
+  const activateGoto = () => {
     const target = document.querySelector(goto.target);
     if (target) target.scrollIntoView({ behavior: 'smooth' });
   };
@@ -93,11 +139,11 @@ export default function WorkRail({
           tabIndex={0}
           onPointerDown={handlePointerDown}
           onPointerMove={handlePointerMove}
-          onPointerUp={endDrag}
+          onPointerUp={handlePointerUp}
           onPointerCancel={endDrag}
           onPointerLeave={endDrag}
           onKeyDown={handleKeyDown}
-          onClickCapture={handleRailClickCapture}
+          onClick={handleRailClick}
         >
           {cases.map((c, i) => (
             <button
@@ -105,7 +151,6 @@ export default function WorkRail({
               className="wcard"
               type="button"
               data-slug={c.slug}
-              onClick={() => onOpen(c.slug)}
             >
               <span className={`wvis w${(i % 5) + 1}`}>{c.visual}</span>
               <span className="wbody">
@@ -123,7 +168,7 @@ export default function WorkRail({
               </span>
             </button>
           ))}
-          <button className="wcard allcard" type="button" onClick={handleGoto}>
+          <button className="wcard allcard" type="button">
             {goto.label}
           </button>
         </div>
