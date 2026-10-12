@@ -24,7 +24,7 @@ export const PROJECTS = [
       "Dairy delivery operations app built with React Native (Expo) on a Supabase backend. Delivery agents get GPS-tagged drop-off tracking, customer payments with a running credit ledger, and generated PDF reports, while over-the-air updates ship through EAS and Sentry captures crashes in production.",
     image: null,
     technologies: ["React Native", "Expo", "Supabase", "PostgreSQL", "EAS Update", "Sentry"],
-    github: "https://github.com/pranavlal18/dudhwala",
+    github: null,
     highlights: [
       "GPS tagging of deliveries in React Native (Expo) backed by Supabase (PostgreSQL)",
       "Payments with a per-customer credit ledger plus generated PDF reports",

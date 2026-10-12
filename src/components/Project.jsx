@@ -2,10 +2,6 @@ import { PROJECTS } from "../constants";
 import { motion } from "framer-motion";
 import { FaExternalLinkAlt, FaGithub, FaLock } from "react-icons/fa";
 
-// R2 (binding): DudhWala is a private repo live in production — its card must
-// show a badge instead of a GitHub link (github.com/pranavlal18/dudhwala 404s).
-const PRIVATE_PROJECTS = new Set(["DudhWala"]);
-
 const getInitials = (title) =>
     title
         .split(" ")
@@ -31,7 +27,9 @@ export default function Project() {
             <div className="flex flex-col gap-10">
                 {PROJECTS.map((project, index) => {
                     const isReversed = index % 2 === 1;
-                    const isPrivate = PRIVATE_PROJECTS.has(project.title);
+                    // R2 (binding): private repo live in production (github === null)
+                    // must show a badge instead of a GitHub link (404s).
+                    const isPrivate = !project.github;
 
                     return (
                         <motion.article
@@ -55,9 +53,6 @@ export default function Project() {
                                             </span>
                                             <p className="text-lg font-semibold text-white">
                                                 {project.title}
-                                            </p>
-                                            <p className="text-xs uppercase tracking-widest text-neutral-400">
-                                                Case study
                                             </p>
                                         </div>
                                     </div>

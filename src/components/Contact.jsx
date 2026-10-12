@@ -50,7 +50,7 @@ export default function Contact() {
                 initial={{ opacity: 0, y: -100 }}
                 transition={{ duration: 1 }}
                 viewport={{ once: true }}
-                className="my-20 mb-4 text-center text-4xl"
+                className="mt-20 mb-4 text-center text-4xl"
             >
                 {"Let's work together"}
             </motion.h2>
