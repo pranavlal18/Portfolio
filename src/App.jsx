@@ -1,31 +1,19 @@
-import Navbar from './components/NavBar';
-import Hero from './components/Hero';
-import About from './components/About';
-import Tech from './components/Technologies'
-import Project from './components/Project';
-import Experience from './components/Experience';
-import Contract from './components/Contact';
+import TicketNav from './components/TicketNav';
+import StickerHero from './components/StickerHero';
+import { useReveal } from './hooks/useReveal';
 
 function App() {
+  // Reveal root: .reveal nodes added by later sections animate in once.
+  const revealRef = useReveal();
+
   return (
-    // overflow-x-clip (R1): keeps horizontal clipping without creating a scroll
-    // container, so the sticky nav keeps working (overflow-x-hidden broke it).
-    <div className="overflow-x-clip text-neutral-300 antialiased selection:bg-cyan-300 selection:text-cyan-900">
-      {/* Background gradient spanning full page */}
-      <div className="fixed inset-0 -z-10 h-screen w-screen [background:radial-gradient(125%_125%_at_50%_10%,#000_40%,#63e_100%)]"></div>
-
-      {/* Anchors (R3/R4): #about → About, #skills → Tech, #projects → Project,
-          #experience → Experience, #contact → Contact */}
-      <div className="container mx-auto px-8">
-        <Navbar />
-        <Hero />
-        <About />
-        <Tech />
-        <Project />
-        <Experience />
-        <Contract />
-
-      </div>
+    <div ref={revealRef}>
+      <TicketNav />
+      <main id="top" className="wrap">
+        <StickerHero />
+        {/* Extension point — Tasks 2–5 mount after hero: rails, dialog, band,
+            resume, contact, footer. */}
+      </main>
     </div>
   );
 }
