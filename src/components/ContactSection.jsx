@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import { CONTACT } from '../constants/index.js';
 import { buildMailto } from '../lib/mailto.js';
 
@@ -34,6 +34,7 @@ function validateField({ name, value }) {
  * The `#contact` section wrapper lives in App.jsx (aria-labelledby → #contactH).
  */
 export default function ContactSection() {
+  const okRef = useRef(null);
   const [errors, setErrors] = useState({ name: '', email: '', message: '' });
   const [sent, setSent] = useState(false);
   const [values, setValues] = useState({ name: '', email: '', message: '' });
@@ -74,6 +75,9 @@ export default function ContactSection() {
       message: values.message.trim(),
     });
     setSent(true);
+    // Move focus to the now-visible status box so keyboard/SR users hear the
+    // confirmation instead of being stranded on the submit button.
+    okRef.current?.focus();
   };
 
   const fieldClass = (name) => (errors[name] ? 'field invalid' : 'field');
@@ -106,7 +110,7 @@ export default function ContactSection() {
           </button>
         </div>
         <form className="c-card" noValidate onSubmit={handleSubmit}>
-          <div className={sent ? 'ok show' : 'ok'} role="status" tabIndex={-1}>
+          <div ref={okRef} className={sent ? 'ok show' : 'ok'} role="status" tabIndex={-1}>
             <b>Opening your email app — thank you.</b>
             <div>Nothing was stored.</div>
           </div>

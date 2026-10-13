@@ -1,5 +1,7 @@
+import { CONTACT } from '../constants/index.js';
+
 /**
- * buildMailto — pure, dependency-free mailto: URI builder for the contact form.
+ * buildMailto — mailto: URI builder for the contact form.
  *
  * Composes a subject greeting from the sender's name and a body carrying the
  * role message plus a signature line (name + reply address), so the composer
@@ -13,7 +15,7 @@
 export function buildMailto({ name, email, message }) {
   const enc = encodeURIComponent;
   return (
-    `mailto:pranavlal18@gmail.com?subject=${enc(`Portfolio inquiry from ${name}`)}` +
+    `mailto:${CONTACT.email}?subject=${enc(`Portfolio inquiry from ${name}`)}` +
     `&body=${enc(`${message}\n\n— ${name} (${email})`)}`
   );
 }
