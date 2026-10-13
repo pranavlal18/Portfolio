@@ -108,6 +108,7 @@ export default function ContactSection() {
           <button className="btn btn-tang" type="button" onClick={() => window.print()}>
             Print resume
           </button>
+          <a className="btn btn-paper" href="/resume.pdf" download="Pranav-Lal-Resume.pdf">Download PDF</a>
         </div>
         <form className="c-card" noValidate onSubmit={handleSubmit}>
           <div ref={okRef} className={sent ? 'ok show' : 'ok'} role="status" tabIndex={-1}>

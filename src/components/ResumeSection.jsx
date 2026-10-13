@@ -25,8 +25,8 @@ const TIMELINE = [
   {
     when: 'Education',
     who: 'MCA · Vidya Academy',
-    context: '2023 — 2025 · CGPA 8.3',
-    body: 'BCA · Christ College (Autonomous), 2020 — 2023 · CGPA 7.6.',
+    context: '2023 — 2025',
+    body: 'BCA · Christ College (Autonomous), 2020 — 2023.',
   },
   {
     when: 'Certifications',
@@ -54,6 +54,7 @@ export default function ResumeSection() {
         <button className="btn btn-ink" type="button" onClick={() => window.print()}>
           Print / save PDF
         </button>
+        <a className="btn btn-paper" href="/resume.pdf" download="Pranav-Lal-Resume.pdf">Download PDF</a>
         <a className="btn btn-paper" href="#contact">Get in touch</a>
       </div>
     </div>
