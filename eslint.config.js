@@ -35,4 +35,11 @@ export default [
       ],
     },
   },
+  {
+    // Vercel serverless functions run on Node: allow process, Buffer, etc.
+    files: ['api/**/*.js'],
+    languageOptions: {
+      globals: { ...globals.browser, ...globals.node },
+    },
+  },
 ]
