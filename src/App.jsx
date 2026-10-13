@@ -60,7 +60,7 @@ function App() {
       </main>
       <footer>
         <div className="wrap foot">
-          <span>{'Pranav © 2026 · Paper-collage build inspired by drag-portfolio energy.'}</span>
+          <span>{'Pranav © 2026'}</span>
           <span style={{ marginLeft: 'auto', display: 'flex', gap: '14px' }}>
             <a href="#featured">Work</a>
             <a href="#resume">Resume</a>

@@ -19,7 +19,7 @@ const bandExpect = [
   "02 · Reason",
   "03 · Ship",
   "30+",
-  "MCA CGPA",
+  "Certs & awards",
   "Production counts.",
   "Built for the real world.",
 ];
@@ -31,7 +31,7 @@ for (const token of bandExpect) {
 const resumeExpect = [
   "Digicyfr",
   "Odin Tech",
-  "CGPA 8.3",
+  "Vidya Academy",
   "Young Innovators",
   "window.print()",
   "Get in touch",
