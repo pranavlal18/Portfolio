@@ -54,6 +54,7 @@ export default function ResumeSection() {
         <button className="btn btn-ink" type="button" onClick={() => window.print()}>
           Print / save PDF
         </button>
+        <a className="btn btn-paper" href="/resume.pdf" download="Pranav-Lal-Resume.pdf">Download PDF</a>
         <a className="btn btn-paper" href="#contact">Get in touch</a>
       </div>
     </div>

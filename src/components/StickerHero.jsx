@@ -22,6 +22,7 @@ export default function StickerHero() {
             <button className="btn btn-paper" type="button" onClick={() => window.print()}>
               Print resume
             </button>
+            <a className="btn btn-paper" href="/resume.pdf" download="Pranav-Lal-Resume.pdf">Download PDF</a>
           </div>
           <p style={{ fontWeight: 800, fontSize: '13px', letterSpacing: '.1em', textTransform: 'uppercase' }}>
             Tip! Drag sideways to navigate ↓
