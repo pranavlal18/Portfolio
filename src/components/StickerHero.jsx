@@ -1,12 +1,13 @@
 /**
  * StickerHero — paper-collage hero (port of the reference hero structure).
  * Copy is pinned by the redesign brief; reference persona copy is never reused.
- * Anchors: #work (hero root), #featured (CTA). Print CTA calls window.print().
+ * Anchors: #work (hero root), #featured (CTA). Download-only CTA (print is
+ * left to the browser via Ctrl+P); the floating tech stickers are decorative.
  */
 export default function StickerHero() {
   return (
     <div className="hero" id="work">
-      <span className="kicker"><i aria-hidden="true"></i> Open to jobs & freelance gigs · 2026</span>
+      <span className="kicker"><i aria-hidden="true"></i> Open to jobs & freelance gigs</span>
       <div className="hero-grid">
         <div>
           <h1 aria-label="Pranav — AI Developer">
@@ -15,13 +16,10 @@ export default function StickerHero() {
             <span className="tang">DEVELOPER!</span>
           </h1>
           <p className="lede">
-            {"I'm Pranav — MCA graduate and Python developer building LLM apps, RAG pipelines, and LangGraph agents. FastAPI backends, PostgreSQL, vector search, AWS Bedrock. Latest: a 9-node safety agent for Kerala fishermen, plus a production dairy-delivery app."}
+            {"I'm Pranav, a Python developer who ships AI into production — retrieval systems, LangGraph agents, and backends that hold up. My work already guides fishermen at sea and runs daily deliveries across Kerala shops."}
           </p>
           <div className="hero-cta">
             <a className="btn btn-ink" href="#featured">Drag the work ↓</a>
-            <button className="btn btn-paper" type="button" onClick={() => window.print()}>
-              Print resume
-            </button>
             <a className="btn btn-paper" href="/resume.pdf" download="Pranav-Lal-Resume.pdf">Download PDF</a>
           </div>
           <p style={{ fontWeight: 800, fontSize: '13px', letterSpacing: '.1em', textTransform: 'uppercase' }}>
@@ -29,7 +27,9 @@ export default function StickerHero() {
           </p>
         </div>
         <div className="sticker-wrap">
-          <div className="badge-new">New · 2026folio</div>
+          <div className="badge-new">New · Fresh folio</div>
+          <div className="sticker-tag st-tag-rag" aria-hidden="true">RAG</div>
+          <div className="sticker-tag st-tag-lang" aria-hidden="true">LangGraph</div>
           <div
             className="avatar-star"
             role="img"

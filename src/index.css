@@ -75,6 +75,11 @@ h1 .tang{color:var(--tang);-webkit-text-stroke:0}
 .stamp{position:absolute;right:6%;bottom:4%;width:120px;height:120px;animation:spin 14s linear infinite}
 @keyframes spin{to{transform:rotate(360deg)}}
 .badge-new{position:absolute;left:4%;top:6%;background:var(--tang);color:#fff;font-weight:800;border:2px solid var(--ink);border-radius:12px;padding:8px 12px;transform:rotate(-8deg);box-shadow:4px 4px 0 var(--ink)}
+/* mini floating tech stickers — decorative (aria-hidden), parked in the wrap
+   corners so they clear the star's rounded bbox at every width */
+.sticker-tag{position:absolute;background:var(--yel);color:var(--ink);border:2px solid var(--ink);border-radius:10px;padding:6px 11px;font-size:12.5px;font-weight:800;letter-spacing:.03em;box-shadow:3px 3px 0 var(--ink);pointer-events:none;z-index:2}
+.st-tag-rag{top:0;right:0;transform:rotate(6deg)}
+.st-tag-lang{bottom:0;left:0;background:var(--paper);transform:rotate(-7deg)}
 .tip{margin:22px 0 8px;display:flex;align-items:center;gap:12px;font-weight:800;font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:#3d3a30}
 .tip::after{content:"";height:2px;flex:1;background:var(--ink)}
 /* rails */
@@ -114,8 +119,8 @@ section{padding:34px 0;scroll-margin-top:90px}
 /* quotes */
 .quotes{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:14px}
 .q{background:#fff;border:2.5px solid var(--ink);border-radius:16px;padding:20px;box-shadow:5px 5px 0 var(--ink);color:var(--ink)}
-.q p{font-family:var(--serif);font-size:17px;margin:0 0 10px}
-.q b{display:block;font-size:14px} .q small{color:var(--mut);font-size:13px}
+.q p{font-family:var(--serif);font-size:17px;margin:0 0 10px;color:var(--ink)}
+.q b{display:block;font-size:14px;color:var(--ink)} .q small{color:var(--mut);font-size:13px}
 /* resume */
 .resume{background:#fff;border:3px solid var(--ink);border-radius:22px;padding:34px;box-shadow:8px 8px 0 var(--ink);margin-top:16px}
 .tl{list-style:none;margin:20px 0 0;padding:0 0 0 22px;border-left:3px dashed var(--ink);display:grid}
@@ -154,6 +159,6 @@ dialog::backdrop{background:rgba(23,21,15,.6)}
 .m{background:#fff;border:2px solid var(--ink);border-radius:12px;padding:10px;text-align:center}
 .m b{display:block;font-family:var(--display);font-size:22px}
 @media(max-width:1024px){.hero-grid,.band,.c-grid{grid-template-columns:1fr}.awards{grid-template-columns:1fr 1fr}.quotes{grid-template-columns:1fr}}
-@media(max-width:768px){.nav,.topbar .btn{display:none}.mbtn{display:grid;place-items:center;margin-left:auto}.nav.open{display:grid;position:absolute;top:70px;left:24px;right:24px;background:var(--ink);border-radius:18px;padding:14px}.sticker-wrap{min-height:300px}}
+@media(max-width:768px){.nav,.topbar .btn{display:none}.mbtn{display:grid;place-items:center;margin-left:auto}.nav.open{display:grid;position:absolute;top:70px;left:24px;right:24px;background:var(--ink);border-radius:18px;padding:14px}.sticker-wrap{min-height:300px}.sticker-tag{font-size:11px;padding:5px 9px;box-shadow:2px 2px 0 var(--ink)}}
 @media print{.topbar,.hero-cta,.rail-btns,.c-grid,.mq{display:none !important}body{background:#fff}main > *:not(#resume){display:none !important}.reveal{opacity:1 !important;transform:none !important}.resume{box-shadow:none}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation:none !important;transition:none !important}.reveal{opacity:1;transform:none}.rail{scroll-behavior:auto}}
