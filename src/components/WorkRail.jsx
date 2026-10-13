@@ -16,7 +16,9 @@ import { useRef } from 'react';
  * directly when travel ≤ 6px — `onOpen(slug)` / goto scroll. The trailing
  * pointer click is consumed (never double-activates); keyboard clicks
  * (Enter/Space, no pointer involved) are delegated at the rail via
- * `onClick`, so focus + activation on cards keeps working.
+ * `onClick`, so focus + activation on cards keeps working. Non-primary
+ * buttons (right/middle click) are ignored entirely — they neither drag
+ * nor arm an activation, matching base/reference click semantics.
  *
  * Cards render `data-slug` and call `onOpen(slug)` (default no-op) — Task 3
  * wires the case dialog through App.jsx state without touching this file.
@@ -44,6 +46,11 @@ export default function WorkRail({
   const handlePointerDown = (e) => {
     const rail = railRef.current;
     if (!rail) return;
+    // Only the primary button (left touch) starts a gesture. Right/middle
+    // click must never drag or arm an activation (base/reference activate via
+    // primary click only), and leaving handledClick untouched keeps a later
+    // keyboard Enter/Space activation working.
+    if (e.button !== 0) return;
     drag.current = { down: true, sx: e.clientX, sl: rail.scrollLeft };
     dragged.current = false;
     // Chromium retargets the trailing click to the rail (pointer capture), so
