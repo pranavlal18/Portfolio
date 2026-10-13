@@ -5,6 +5,7 @@ import WorkRail from './components/WorkRail';
 import CaseDialog from './components/CaseDialog';
 import ArtisanBand from './components/ArtisanBand';
 import ResumeSection from './components/ResumeSection';
+import ContactSection from './components/ContactSection';
 import { CASES, FEATURED, MORE } from './content/cases';
 import { CASE_DETAILS } from './content/caseDetails';
 import { useReveal } from './hooks/useReveal';
@@ -53,8 +54,20 @@ function App() {
         <section id="resume" aria-labelledby="resumeH">
           <ResumeSection />
         </section>
-        {/* Extension point — Task 5 mounts contact + footer here. */}
+        <section id="contact" className="contact" aria-labelledby="contactH">
+          <ContactSection />
+        </section>
       </main>
+      <footer>
+        <div className="wrap foot">
+          <span>{'Pranav © 2026 · Paper-collage build inspired by drag-portfolio energy.'}</span>
+          <span style={{ marginLeft: 'auto', display: 'flex', gap: '14px' }}>
+            <a href="#featured">Work</a>
+            <a href="#resume">Resume</a>
+            <a href="#contact">Contact</a>
+          </span>
+        </div>
+      </footer>
     </div>
   );
 }
