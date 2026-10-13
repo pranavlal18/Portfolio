@@ -155,5 +155,5 @@ dialog::backdrop{background:rgba(23,21,15,.6)}
 .m b{display:block;font-family:var(--display);font-size:22px}
 @media(max-width:1024px){.hero-grid,.band,.c-grid{grid-template-columns:1fr}.awards{grid-template-columns:1fr 1fr}.quotes{grid-template-columns:1fr}}
 @media(max-width:768px){.nav,.topbar .btn{display:none}.mbtn{display:grid;place-items:center;margin-left:auto}.nav.open{display:grid;position:absolute;top:70px;left:24px;right:24px;background:var(--ink);border-radius:18px;padding:14px}.sticker-wrap{min-height:300px}}
-@media print{.topbar,.hero-cta,.rail-btns,.c-grid,.mq{display:none !important}body{background:#fff}}
+@media print{.topbar,.hero-cta,.rail-btns,.c-grid,.mq{display:none !important}body{background:#fff}main > *:not(#resume){display:none !important}.reveal{opacity:1 !important;transform:none !important}.resume{box-shadow:none}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation:none !important;transition:none !important}.reveal{opacity:1;transform:none}.rail{scroll-behavior:auto}}

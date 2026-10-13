@@ -3,6 +3,8 @@ import TicketNav from './components/TicketNav';
 import StickerHero from './components/StickerHero';
 import WorkRail from './components/WorkRail';
 import CaseDialog from './components/CaseDialog';
+import ArtisanBand from './components/ArtisanBand';
+import ResumeSection from './components/ResumeSection';
 import { CASES, FEATURED, MORE } from './content/cases';
 import { CASE_DETAILS } from './content/caseDetails';
 import { useReveal } from './hooks/useReveal';
@@ -45,8 +47,13 @@ function App() {
           detail={openSlug ? CASE_DETAILS[openSlug] : null}
           onClose={() => setOpenSlug(null)}
         />
-        {/* Extension point — Tasks 4–5 mount after rails: band, resume,
-            contact, footer. */}
+        <section id="about" aria-labelledby="aboutH">
+          <ArtisanBand />
+        </section>
+        <section id="resume" aria-labelledby="resumeH">
+          <ResumeSection />
+        </section>
+        {/* Extension point — Task 5 mounts contact + footer here. */}
       </main>
     </div>
   );
