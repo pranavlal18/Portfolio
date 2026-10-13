@@ -108,12 +108,12 @@ section{padding:34px 0;scroll-margin-top:90px}
 .step small{display:block;color:#B9B4A2;font-size:13.5px}
 /* awards */
 .awards{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:16px}
-.aw{background:#fff;border:2.5px solid var(--ink);border-radius:16px;padding:18px;text-align:center;box-shadow:5px 5px 0 var(--ink)}
+.aw{background:#fff;border:2.5px solid var(--ink);border-radius:16px;padding:18px;text-align:center;box-shadow:5px 5px 0 var(--ink);color:var(--ink)}
 .aw b{display:block;font-family:var(--display);font-size:34px}
 .aw small{display:block;font-weight:800;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--mut)}
 /* quotes */
 .quotes{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:14px}
-.q{background:#fff;border:2.5px solid var(--ink);border-radius:16px;padding:20px;box-shadow:5px 5px 0 var(--ink)}
+.q{background:#fff;border:2.5px solid var(--ink);border-radius:16px;padding:20px;box-shadow:5px 5px 0 var(--ink);color:var(--ink)}
 .q p{font-family:var(--serif);font-size:17px;margin:0 0 10px}
 .q b{display:block;font-size:14px} .q small{color:var(--mut);font-size:13px}
 /* resume */

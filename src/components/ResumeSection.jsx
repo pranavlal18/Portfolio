@@ -25,8 +25,8 @@ const TIMELINE = [
   {
     when: 'Education',
     who: 'MCA · Vidya Academy',
-    context: '2023 — 2025 · CGPA 8.3',
-    body: 'BCA · Christ College (Autonomous), 2020 — 2023 · CGPA 7.6.',
+    context: '2023 — 2025',
+    body: 'BCA · Christ College (Autonomous), 2020 — 2023.',
   },
   {
     when: 'Certifications',

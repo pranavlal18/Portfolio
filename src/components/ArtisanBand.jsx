@@ -28,7 +28,7 @@ export default function ArtisanBand() {
             <div className="aw"><b>30+</b><small>GitHub repos</small></div>
             <div className="aw"><b>6</b><small>Featured builds</small></div>
             <div className="aw"><b>2</b><small>Internships</small></div>
-            <div className="aw"><b>8.3</b><small>MCA CGPA</small></div>
+            <div className="aw"><b>3</b><small>Certs & awards</small></div>
           </div>
           <div className="quotes">
             <div className="q">
