@@ -1,13 +1,16 @@
 /**
  * ResumeSection — resume timeline card (port of the reference resume,
  * indexq.html lines 228–233): `.resume` card, dashed `.tl` timeline with ★
- * markers, print + contact buttons.
+ * markers, download + contact buttons.
  *
  * Timeline copy is pinned verbatim by the redesign brief and mirrors the
  * frozen src/constants/index.js facts (EXPERIENCE / EDUCATION / CERTIFICATIONS).
  * The `#resume` section wrapper lives in App.jsx (aria-labelledby → #resumeH).
- * The print button calls window.print(); the index.css print block hides
- * everything inside main except #resume, so printing yields the resume only.
+ * Download only — printing is left to the browser (Ctrl+P); the index.css
+ * print block still scopes output to #resume alone.
+ *
+ * Timeline items may omit context/body (e.g. the BCA line) — both render
+ * conditionally so no empty <small>/<p> ever hits the DOM.
  */
 const TIMELINE = [
   {
@@ -23,10 +26,16 @@ const TIMELINE = [
     body: 'Backend services and REST integrations; Next.js components; database optimization.',
   },
   {
-    when: 'Education',
+    when: '2023 — 2025',
     who: 'MCA · Vidya Academy',
-    context: '2023 — 2025',
-    body: 'BCA · Christ College (Autonomous), 2020 — 2023.',
+    context: '',
+    body: 'Focused on software engineering and applied AI.',
+  },
+  {
+    when: '2020 — 2023',
+    who: 'BCA · Christ College (Autonomous)',
+    context: '',
+    body: '',
   },
   {
     when: 'Certifications',
@@ -39,21 +48,18 @@ const TIMELINE = [
 export default function ResumeSection() {
   return (
     <div className="resume reveal">
-      <h2 className="sec-title" id="resumeH">Resume — at a glance.</h2>
+      <h2 className="sec-title" id="resumeH">Track record.</h2>
       <ol className="tl">
         {TIMELINE.map((item) => (
           <li key={item.who}>
             <span className="w">{item.when}</span>
             <b>{item.who}</b>
-            <small>{item.context}</small>
-            <p>{item.body}</p>
+            {item.context ? <small>{item.context}</small> : null}
+            {item.body ? <p>{item.body}</p> : null}
           </li>
         ))}
       </ol>
       <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap', marginTop: '12px' }}>
-        <button className="btn btn-ink" type="button" onClick={() => window.print()}>
-          Print / save PDF
-        </button>
         <a className="btn btn-paper" href="/resume.pdf" download="Pranav-Lal-Resume.pdf">Download PDF</a>
         <a className="btn btn-paper" href="#contact">Get in touch</a>
       </div>
